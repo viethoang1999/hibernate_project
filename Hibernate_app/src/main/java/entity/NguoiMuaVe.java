@@ -32,7 +32,7 @@ public class NguoiMuaVe implements Serializable {
     String phone;
     @Column(name = "typecustomer", nullable = false)
     String typecustomer;
-    @OneToMany(mappedBy = "nguoiMuaVe",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "nguoiMuaVe", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<HoaDon> hoaDons;
 
 
@@ -46,43 +46,44 @@ public class NguoiMuaVe implements Serializable {
         System.out.println("Nhap so dien thoai: ");
         this.phone = scanner.nextLine();
         System.out.println("Nhap loai nguoi mua ve: ");
-        boolean check=true;
+        boolean check = true;
         int choose;
         do {
-           try {
-               choose=scanner.nextInt();
-               scanner.nextLine();
-           }catch (Exception e){
-               System.out.println("Khong nhap ki tu khac ngoai so");
-               check=false;
-               continue;
-           }
-           if (choose<0||choose>3){
-               System.out.println("Nhap lai tu 1-5");
-               check=false;
-               continue;
-           }
-           switch (choose){
-               case 1:
-                   this.setTypecustomer(LoaiNguoiMua.MUA_LE);
-                   System.out.println("Mua le");
-                   break;
-               case 2:
-                   this.setTypecustomer(LoaiNguoiMua.MUA_ONLINE);
-                   System.out.println("Mua online");
-                   break;
-               case 3:
-                   this.setTypecustomer(LoaiNguoiMua.MUA_TAP_THE);
-                   System.out.println("Mua tap the");
-                   break;
-               default:
-                   System.out.println("Nhap tu 1-3");
-                   check=false;
-                   break;
-           }
-        }while (!true);
+            try {
+                choose = scanner.nextInt();
+                scanner.nextLine();
+            } catch (Exception e) {
+                System.out.println("Khong nhap ki tu khac ngoai so");
+                check = false;
+                continue;
+            }
+            if (choose < 0 || choose > 3) {
+                System.out.println("Nhap lai tu 1-5");
+                check = false;
+                continue;
+            }
+            switch (choose) {
+                case 1:
+                    this.setTypecustomer(LoaiNguoiMua.MUA_LE);
+                    System.out.println("Mua le");
+                    break;
+                case 2:
+                    this.setTypecustomer(LoaiNguoiMua.MUA_ONLINE);
+                    System.out.println("Mua online");
+                    break;
+                case 3:
+                    this.setTypecustomer(LoaiNguoiMua.MUA_TAP_THE);
+                    System.out.println("Mua tap the");
+                    break;
+                default:
+                    System.out.println("Nhap tu 1-3");
+                    check = false;
+                    break;
+            }
+        } while (!true);
     }
-    public List<HoaDon> getHoaDon(){
+
+    public List<HoaDon> getHoaDon() {
         return hoaDons;
     }
 

@@ -43,12 +43,12 @@ public class NguoiMuaVeDAO {
             session.beginTransaction();
             Query<NguoiMuaVe> query = session.createQuery("select  c from NguoiMuaVe c where c.id= :p_id");
             query.setParameter("p_id", id);
-            NguoiMuaVe nguoiMuaVe=query.getSingleResult();
+            NguoiMuaVe nguoiMuaVe = query.getSingleResult();
             session.getTransaction().commit();
             return nguoiMuaVe;
         } catch (Exception e) {
             System.out.println(e);
-        }finally {
+        } finally {
             session.close();
         }
         return null;

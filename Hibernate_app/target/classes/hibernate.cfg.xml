@@ -24,4 +24,4 @@
         <mapping class="entity.VeTau"/>
         <mapping class="entity.HoaDon"/>
     </session-factory>
-</hibernate-configuration>
+</hibernate-configuration>  

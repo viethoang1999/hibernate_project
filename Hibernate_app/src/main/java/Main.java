@@ -4,7 +4,7 @@ import DAO.VeTauDAO;
 import entity.HoaDon;
 import entity.NguoiMuaVe;
 import entity.VeTau;
-import sevice.NghiepVuNguoiMuave;
+
 
 import java.util.List;
 import java.util.Scanner;
@@ -14,129 +14,77 @@ public class Main {
     public static VeTauDAO veTauDAO = new VeTauDAO();
     public static HoaDonDao hoaDonDao = new HoaDonDao();
 
-//    public static void menu() {
-//        System.out.println("Phan mem quan ly ban ve");
-//        System.out.println("1.Hien thi thong tin khach hang");
-//        System.out.println("2.Hien thi thong tin ve");
-//        System.out.println("3.Hien thi danh sach mua ve");
-//        System.out.println("4. Them mới 1 khách");
-//        System.out.println("5.Them moi ve");
-//        System.out.println("6.Them danh sach mua ve");
-//        System.out.println("7.Sx theo so luong");
-//        System.out.println("8.Sx theo ten");
-//        System.out.println("9. Hoa don");
-//        System.out.println("10.Thoat");
-//        System.out.println("Moi chon chuc nang");
-//        Scanner scanner = new Scanner(System.in);
-//        int choose=0;
-//        boolean check = true;
-////        do {
-//            try {
-//                choose = scanner.nextInt();
-//                scanner.nextLine();
-//                check = true;
-//            } catch (Exception e) {
-//                System.out.println("Khong nhap ky tu khac ngoai so");
-////                continue;
-//            }
-//            if (choose <= 0 || choose > 10) {
-//                System.out.println("Nhap so tu 1-6");
-//                check = false;
-//            }
-////            else {
-////                break;
-////            }
-//            switch (choose) {
-//                case 1:
-//                    hienThiThongTinNguoiMuaVe();
-//                    break;
-//                case 2:
-//                    break;
-//                case 3:
-//                    break;
-//                case 4:
-//                    break;
-//                case 5:
-//                    break;
-//                case 6:
-//                    System.exit(0);
-//            }
-////        } while (!check);
-//
-
-    //   }
-    public static double type(Scanner input, double min, double max) {
-        double option = -1;
-        while (option == -1) {
+    public static int choose() {
+        System.out.println("Phan mem quan ly ban ve");
+        System.out.println("1.Hien thi thong tin khach hang");
+        System.out.println("2.Hien thi thong tin ve");
+        System.out.println("3.Hien thi danh sach mua ve");
+        System.out.println("4. Them mới 1 khách");
+        System.out.println("5.Them moi ve");
+        System.out.println("6.Them danh sach mua ve");
+        System.out.println("7.Sx theo so luong");
+        System.out.println("8.Sx theo ten");
+        System.out.println("9. Hoa don");
+        System.out.println("10.Thoat");
+        System.out.println("Moi chon chuc nang");
+        Scanner scanner = new Scanner(System.in);
+        int choose = 0;
+        boolean check = true;
+        do {
             try {
-                option = input.nextDouble();
-                if (option < min || option > max) {
-                    throw new IllegalArgumentException();
-                }
+                choose = new Scanner(System.in).nextInt();
+                check = true;
             } catch (Exception e) {
-                System.out.print("Input value must be between " + min + " - " + max + ". Type again: ");
-                input.nextLine();
-                option = -1;
+                System.out.println("Không được nhập ký tự khác ngoài số! Nhập lại: ");
+                continue;
             }
-        }
-        return option;
+            if (choose <= 0 || choose > 11) {
+                System.out.print("Nhập số trong khoảng từ 1 đến 6! Nhập lại: ");
+                check = false;
+            } else break;
+        } while (!check);
+        return choose;
     }
 
     public static void menu() {
-        System.out.println("-------------------------------------------------");
-        System.out.println("TICKET MANAGEMENT");
-        System.out.println("-------------------------------------------------");
-        System.out.println("1. Add Customer");
-        System.out.println("2. Print all customers");
-        System.out.println("3. Add ticket");
-        System.out.println("4. Print all tickets");
-        System.out.println("5. Create buying record");
-        System.out.println("6. Print out all buying record");
-        System.out.println("7. Sorting buying record by customer's name");
-        System.out.println("8. Sorting buying record by ticket quantity");
-        System.out.println("9. Print out receipt for each customer");
-        System.out.println("0. Exit");
-        Scanner input = new Scanner(System.in);
-        int part = (int) type(input, 0, 9);
-        switch (part) {
-            case 0:
-                System.out.println("GOOD BYE !!!");
-                break;
-            case 1:
-                NghiepVuNguoiMuave.nguoiMuaVe();
-
-                break;
-            case 2:
-                hienThiThongTinNguoiMuaVe();
-                break;
-            case 3:
-               VeTauDAO.themMoi();
-
-                break;
-            case 4:
-                //  TicketService.printAllTickets();
-                break;
-            case 5:
-                // BuyingRecordService.createBuyingRecord();
-                break;
-            case 6:
-                // BuyingRecordService.printAllBuyingRecord();
-                break;
-            case 7:
-                // BuyingRecordService.sortingByCustomerName();
-                break;
-            case 8:
-                // BuyingRecordService.sortingByTicketQuantity();
-                break;
-            case 9:
-                //   BuyingRecordService.printReceipt();
-                break;
-        }
+        do {
+            int functionChoice = choose();
+            switch (functionChoice) {
+                case 1:
+                    NguoiMuaVeDAO.themMoi();
+                    break;
+                case 2:
+                    hienThiThongTinNguoiMuaVe();
+                    break;
+                case 3:
+                    VeTauDAO.themMoi();
+                    break;
+                case 4:
+                    hienThiVe();
+                    break;
+                case 5:
+                    hienThiHoaDon();
+                    break;
+                case 6:
+                    themMoi();
+                    break;
+                case 7:
+                    HoaDonDao.sapXepTheoTongSoVe();
+                    break;
+                case 8:
+                    sapXepTen();
+                    break;
+                case 9:
+                    hoaDon();
+                    break;
+                case 10:
+                    System.exit(0);
+            }
+        } while (true);
     }
 
     public static void main(String[] args) {
         menu();
-
     }
 
     public static void hienThiThongTinNguoiMuaVe() {
@@ -148,7 +96,7 @@ public class Main {
         } else {
             System.out.println("Khong co ban ghi nao trong csdl");
         }
-        menu();
+//        menu();
     }
 
     public static void hienThiVe() {

@@ -3,8 +3,8 @@ package sevice;
 import DAO.NguoiMuaVeDAO;
 
 public class NghiepVuNguoiMuave {
-    public static void nguoiMuaVe(){
-        NguoiMuaVeDAO.themMoi();
-
-    }
+//    public static void nguoiMuaVe(){
+//        NguoiMuaVeDAO.themMoi();
+//
+//    }
 }
